@@ -16,7 +16,8 @@ namespace ArinaCommandCenter
 
         private List<GameInfo> GameList = new List<GameInfo>
         {
-            new GameInfo { Name = "Rance 10", SavePath = @"C:\Users\kentn\OneDrive\ドキュメント", SaveSubDirectory = @"AliceSoft\ランス１０" }
+            new GameInfo { Name = "Rance 10", SavePath = @"C:\Users\KentoHize\OneDrive\ドキュメント", SaveSubDirectory = @"AliceSoft\ランス１０" },
+            new GameInfo { Name = "Pathfinder", SavePath = @"C:\Users\KentoHize\AppData\LocalLow", SaveSubDirectory = @"Owlcat Games\Pathfinder Kingmaker\Saved Games" },
         };
 
         public MainForm()
@@ -35,6 +36,8 @@ namespace ArinaCommandCenter
             if (cbbGameList.SelectedIndex != -1)
                 Sonia.BackupGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath,
                     ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory);
+
+            MessageBox.Show("存檔完成");
         }
     }
 }
