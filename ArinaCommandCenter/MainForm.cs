@@ -33,6 +33,9 @@ namespace ArinaCommandCenter
 
         private void btnGameSave_Click(object sender, EventArgs e)
         {
+            DialogResult dr = MessageBox.Show($"{((GameInfo)cbbGameList.SelectedItem).Name} 確定存檔？", "確定", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if(dr == DialogResult.Cancel)
+                return;
             if (cbbGameList.SelectedIndex != -1)
                 Sonia.BackupGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath,
                     ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory);
