@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Aritiafel.Characters.Heroes;
+using System.IO;
 
 namespace ArinaCommandCenter
 {
@@ -41,6 +42,15 @@ namespace ArinaCommandCenter
                     ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory);
 
             MessageBox.Show("存檔完成");
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Directory.Exists(@"E:\"))
+            {
+                MessageBox.Show("記得取出隨身碟", "記憶裝置未取出", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                e.Cancel = true;
+            }
         }
     }
 }

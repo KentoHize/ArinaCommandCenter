@@ -36,9 +36,9 @@ namespace ArinaCommandCenter
             // 
             // btnGameSave
             // 
-            this.btnGameSave.Location = new System.Drawing.Point(277, 38);
+            this.btnGameSave.Location = new System.Drawing.Point(277, 36);
             this.btnGameSave.Name = "btnGameSave";
-            this.btnGameSave.Size = new System.Drawing.Size(125, 42);
+            this.btnGameSave.Size = new System.Drawing.Size(125, 39);
             this.btnGameSave.TabIndex = 0;
             this.btnGameSave.Text = "遊戲存檔備份";
             this.btnGameSave.UseVisualStyleBackColor = true;
@@ -47,21 +47,22 @@ namespace ArinaCommandCenter
             // cbbGameList
             // 
             this.cbbGameList.FormattingEnabled = true;
-            this.cbbGameList.Location = new System.Drawing.Point(38, 48);
+            this.cbbGameList.Location = new System.Drawing.Point(38, 45);
             this.cbbGameList.Name = "cbbGameList";
-            this.cbbGameList.Size = new System.Drawing.Size(201, 24);
+            this.cbbGameList.Size = new System.Drawing.Size(201, 23);
             this.cbbGameList.TabIndex = 1;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 205);
+            this.ClientSize = new System.Drawing.Size(547, 192);
             this.Controls.Add(this.cbbGameList);
             this.Controls.Add(this.btnGameSave);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "有奈管理面板";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
 
