@@ -19,6 +19,8 @@ namespace ArinaCommandCenter
         {
             new GameInfo { Name = "Rance 10", SavePath = @"C:\Users\KentoHize\OneDrive\ドキュメント", SaveSubDirectory = @"AliceSoft\ランス１０" },
             new GameInfo { Name = "Pathfinder", SavePath = @"C:\Users\KentoHize\AppData\LocalLow", SaveSubDirectory = @"Owlcat Games\Pathfinder Kingmaker\Saved Games" },
+            new GameInfo { Name = "超昂神騎", SavePath = @"C:\Users\KentoHize\Documents\", SaveSubDirectory = @"AliceSoft\超昂天使エスカレイヤー・リブート" },
+            new GameInfo { Name = "Might & Magic Heroes VII", SavePath = @"C:\Program Files (x86)\Ubisoft", SaveSubDirectory = @"Ubisoft Game Launcher\savegames\dd887672-be36-4a2c-9fc7-80d93217b9f3" },
         };
 
         public MainForm()
