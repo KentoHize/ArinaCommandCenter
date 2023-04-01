@@ -26,7 +26,7 @@ namespace ArinaCommandCenter
 
         private List<GameInfo> GameList2 = new List<GameInfo>
         {            
-            new GameInfo { Name = "幻燐の姫将軍2", SavePath = LocalAppPath, SaveSubDirectory = @"Eushully\幻燐の姫将軍2DL版\SAVE", TargetPath = MoveToFolder },
+            new GameInfo { Name = "幻燐の姫将軍2", SavePath = LocalAppPath, SaveSubDirectory = @"Eushully\幻燐の姫将軍2DL版", LatestSaveFolder = "SAVE" },
         };
 
         public MainForm()
@@ -48,10 +48,11 @@ namespace ArinaCommandCenter
             if(dr == DialogResult.Cancel)
                 return;
             if (cbbGameList.SelectedIndex != -1)
+            {
                 Sonia.BackupGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath,
                     ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory);
-
-            MessageBox.Show("存檔完成");
+                MessageBox.Show("存檔完成");
+            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -70,11 +71,23 @@ namespace ArinaCommandCenter
                 return;
             if (cbbGameList2.SelectedIndex != -1)
             {
-                Sonia.CopyGameSave(((GameInfo)cbbGameList2.SelectedItem).SavePath,
+                long fileCount = Sonia.CopyGameSave(((GameInfo)cbbGameList2.SelectedItem).SavePath,
                     ((GameInfo)cbbGameList2.SelectedItem).SaveSubDirectory,
-                    MoveToFolder);                
+                    MoveToFolder);
+                MessageBox.Show($"移動完成，已經移動{fileCount}個檔案");
             }
-            MessageBox.Show("移動完成");
+            
+        }
+
+        private void btnLatestGameSaveMove_Click(object sender, EventArgs e)
+        {   
+            if (cbbGameList2.SelectedIndex != -1)
+            {
+                long fileCount = Sonia.CopyLatestGameSave(((GameInfo)cbbGameList2.SelectedItem).SavePath,
+                    ((GameInfo)cbbGameList2.SelectedItem).SaveSubDirectory,
+                    MoveToFolder);
+                MessageBox.Show($"移動完成，已經移動{fileCount}個檔案");
+            }            
         }
     }
 }

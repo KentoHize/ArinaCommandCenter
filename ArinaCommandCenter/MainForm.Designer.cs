@@ -34,6 +34,7 @@ namespace ArinaCommandCenter
             this.cbbGameList = new System.Windows.Forms.ComboBox();
             this.btnGameSaveMove = new System.Windows.Forms.Button();
             this.cbbGameList2 = new System.Windows.Forms.ComboBox();
+            this.btnLatestGameSaveMove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGameSave
@@ -72,11 +73,22 @@ namespace ArinaCommandCenter
             this.cbbGameList2.Size = new System.Drawing.Size(201, 23);
             this.cbbGameList2.TabIndex = 3;
             // 
+            // btnLatestGameSaveMove
+            // 
+            this.btnLatestGameSaveMove.Location = new System.Drawing.Point(277, 162);
+            this.btnLatestGameSaveMove.Name = "btnLatestGameSaveMove";
+            this.btnLatestGameSaveMove.Size = new System.Drawing.Size(125, 40);
+            this.btnLatestGameSaveMove.TabIndex = 4;
+            this.btnLatestGameSaveMove.Text = "最新存檔移動";
+            this.btnLatestGameSaveMove.UseVisualStyleBackColor = true;
+            this.btnLatestGameSaveMove.Click += new System.EventHandler(this.btnLatestGameSaveMove_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 192);
+            this.ClientSize = new System.Drawing.Size(547, 248);
+            this.Controls.Add(this.btnLatestGameSaveMove);
             this.Controls.Add(this.cbbGameList2);
             this.Controls.Add(this.btnGameSaveMove);
             this.Controls.Add(this.cbbGameList);
@@ -96,6 +108,7 @@ namespace ArinaCommandCenter
         private System.Windows.Forms.ComboBox cbbGameList;
         private System.Windows.Forms.Button btnGameSaveMove;
         private System.Windows.Forms.ComboBox cbbGameList2;
+        private System.Windows.Forms.Button btnLatestGameSaveMove;
     }
 }
 
