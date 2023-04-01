@@ -79,15 +79,25 @@ namespace ArinaCommandCenter
             
         }
 
-        private void btnLatestGameSaveMove_Click(object sender, EventArgs e)
-        {   
+        private void LatestGameSaveMove(long inMinutes = 30)
+        {
             if (cbbGameList2.SelectedIndex != -1)
             {
                 long fileCount = Sonia.CopyLatestGameSave(((GameInfo)cbbGameList2.SelectedItem).SavePath,
                     ((GameInfo)cbbGameList2.SelectedItem).SaveSubDirectory,
-                    MoveToFolder);
+                    MoveToFolder, inMinutes);
                 MessageBox.Show($"移動完成，已經移動{fileCount}個檔案");
-            }            
+            }
+        }
+
+        private void btnLatestGameSaveMove_Click(object sender, EventArgs e)
+        {
+            LatestGameSaveMove();
+        }
+
+        private void btnLatestGameSaveMove2_Click(object sender, EventArgs e)
+        {
+            LatestGameSaveMove(3);
         }
     }
 }
