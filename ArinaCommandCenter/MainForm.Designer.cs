@@ -32,6 +32,8 @@ namespace ArinaCommandCenter
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btnGameSave = new System.Windows.Forms.Button();
             this.cbbGameList = new System.Windows.Forms.ComboBox();
+            this.btnGameSaveMove = new System.Windows.Forms.Button();
+            this.cbbGameList2 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnGameSave
@@ -52,11 +54,31 @@ namespace ArinaCommandCenter
             this.cbbGameList.Size = new System.Drawing.Size(201, 23);
             this.cbbGameList.TabIndex = 1;
             // 
+            // btnGameSaveMove
+            // 
+            this.btnGameSaveMove.Location = new System.Drawing.Point(277, 102);
+            this.btnGameSaveMove.Name = "btnGameSaveMove";
+            this.btnGameSaveMove.Size = new System.Drawing.Size(125, 39);
+            this.btnGameSaveMove.TabIndex = 2;
+            this.btnGameSaveMove.Text = "遊戲存檔移動";
+            this.btnGameSaveMove.UseVisualStyleBackColor = true;
+            this.btnGameSaveMove.Click += new System.EventHandler(this.btnGameSaveMove_Click);
+            // 
+            // cbbGameList2
+            // 
+            this.cbbGameList2.FormattingEnabled = true;
+            this.cbbGameList2.Location = new System.Drawing.Point(38, 111);
+            this.cbbGameList2.Name = "cbbGameList2";
+            this.cbbGameList2.Size = new System.Drawing.Size(201, 23);
+            this.cbbGameList2.TabIndex = 3;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(547, 192);
+            this.Controls.Add(this.cbbGameList2);
+            this.Controls.Add(this.btnGameSaveMove);
             this.Controls.Add(this.cbbGameList);
             this.Controls.Add(this.btnGameSave);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -72,6 +94,8 @@ namespace ArinaCommandCenter
 
         private System.Windows.Forms.Button btnGameSave;
         private System.Windows.Forms.ComboBox cbbGameList;
+        private System.Windows.Forms.Button btnGameSaveMove;
+        private System.Windows.Forms.ComboBox cbbGameList2;
     }
 }
 

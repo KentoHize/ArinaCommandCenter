@@ -10,6 +10,7 @@ namespace ArinaCommandCenter
     {
         public string Name { get; set; }
         public string Description { get; set; }
+        public string TargetPath { get; set; }
         public string SavePath { get; set; }
         public string SaveSubDirectory { get; set; }
     }
