@@ -22,12 +22,10 @@ namespace ArinaCommandCenter
             new GameInfo { Name = "Pathfinder", SavePath = @"C:\Users\KentoHize\AppData\LocalLow", SaveSubDirectory = @"Owlcat Games\Pathfinder Kingmaker\Saved Games" },
             new GameInfo { Name = "超昂神騎", SavePath = @"C:\Users\KentoHize\Documents\", SaveSubDirectory = @"AliceSoft\超昂天使エスカレイヤー・リブート" },
             new GameInfo { Name = "Might & Magic Heroes VII", SavePath = @"C:\Program Files (x86)\Ubisoft", SaveSubDirectory = @"Ubisoft Game Launcher\savegames\dd887672-be36-4a2c-9fc7-80d93217b9f3" },
+            new GameInfo { Name = "幻燐の姫将軍2", SavePath = LocalAppPath, SaveSubDirectory = @"Eushully\幻燐の姫将軍2DL版"},
         };
 
-        private List<GameInfo> GameList2 = new List<GameInfo>
-        {            
-            new GameInfo { Name = "幻燐の姫将軍2", SavePath = LocalAppPath, SaveSubDirectory = @"Eushully\幻燐の姫将軍2DL版", LatestSaveFolder = "SAVE" },
-        };
+        //private List<GameInfo> GameList2 = new List<GameInfo>((IEnumerable<GameInfo>) GameList);
 
         public MainForm()
         {
@@ -38,8 +36,8 @@ namespace ArinaCommandCenter
         {
             cbbGameList.DataSource = GameList;
             cbbGameList.DisplayMember = "Name";
-            cbbGameList2.DataSource = GameList2;
-            cbbGameList2.DisplayMember = "Name";
+            //cbbGameList2.DataSource = GameList2;
+            //cbbGameList2.DisplayMember = "Name";
         }
 
         private void btnGameSave_Click(object sender, EventArgs e)
@@ -66,13 +64,13 @@ namespace ArinaCommandCenter
 
         private void btnGameSaveMove_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show($"{((GameInfo)cbbGameList2.SelectedItem).Name} 確定移動？", "確定", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show($"{((GameInfo)cbbGameList.SelectedItem).Name} 確定移動？", "確定", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (dr == DialogResult.Cancel)
                 return;
-            if (cbbGameList2.SelectedIndex != -1)
+            if (cbbGameList.SelectedIndex != -1)
             {
-                long fileCount = Sonia.CopyGameSave(((GameInfo)cbbGameList2.SelectedItem).SavePath,
-                    ((GameInfo)cbbGameList2.SelectedItem).SaveSubDirectory,
+                long fileCount = Sonia.CopyGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath,
+                    ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory,
                     MoveToFolder);
                 MessageBox.Show($"移動完成，已經移動{fileCount}個檔案");
             }
@@ -81,10 +79,10 @@ namespace ArinaCommandCenter
 
         private void LatestGameSaveMove(long inMinutes = 30)
         {
-            if (cbbGameList2.SelectedIndex != -1)
+            if (cbbGameList.SelectedIndex != -1)
             {
-                long fileCount = Sonia.CopyLatestGameSave(((GameInfo)cbbGameList2.SelectedItem).SavePath,
-                    ((GameInfo)cbbGameList2.SelectedItem).SaveSubDirectory,
+                long fileCount = Sonia.CopyLatestGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath,
+                    ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory,
                     MoveToFolder, inMinutes);
                 MessageBox.Show($"移動完成，已經移動{fileCount}個檔案");
             }
