@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Aritiafel.Characters.Heroes;
 using System.IO;
+using System.Diagnostics;
 
 namespace ArinaCommandCenter
 {
@@ -36,6 +37,7 @@ namespace ArinaCommandCenter
         {
             cbbGameList.DataSource = GameList;
             cbbGameList.DisplayMember = "Name";
+            cbbGameList.SelectedIndex = 4;
             //cbbGameList2.DataSource = GameList2;
             //cbbGameList2.DisplayMember = "Name";
         }
@@ -96,6 +98,19 @@ namespace ArinaCommandCenter
         private void btnLatestGameSaveMove2_Click(object sender, EventArgs e)
         {
             LatestGameSaveMove(3);
+        }
+
+        private void cbbGameList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsmShutdown_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show($"執行關機程序", "確定", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (dr == DialogResult.Cancel)
+                return;
+            Process.Start("shutdown", "/s /t 0");
         }
     }
 }
