@@ -19,9 +19,9 @@ namespace ArinaCommandCenter
         private static string MoveToFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private List<GameInfo> GameList = new List<GameInfo>
         {
-            new GameInfo { Name = "Rance 10", SavePath = @"C:\Users\KentoHize\OneDrive\ドキュメント", SaveSubDirectory = @"AliceSoft\ランス１０" },
-            new GameInfo { Name = "Pathfinder", SavePath = @"C:\Users\KentoHize\AppData\LocalLow", SaveSubDirectory = @"Owlcat Games\Pathfinder Kingmaker\Saved Games" },
-            new GameInfo { Name = "超昂神騎", SavePath = @"C:\Users\KentoHize\Documents\", SaveSubDirectory = @"AliceSoft\超昂天使エスカレイヤー・リブート" },
+            new GameInfo { Name = "Rance 10", SavePath = MoveToFolder, SaveSubDirectory = @"AliceSoft\ランス１０" },
+            new GameInfo { Name = "Pathfinder Kingmaker", SavePath = LocalAppPath + "Low", SaveSubDirectory = @"Owlcat Games\Pathfinder Kingmaker\Saved Games" },
+            new GameInfo { Name = "超昂神騎", SavePath = MoveToFolder, SaveSubDirectory = @"AliceSoft\超昂天使エスカレイヤー・リブート" },
             new GameInfo { Name = "Might & Magic Heroes VII", SavePath = @"C:\Program Files (x86)\Ubisoft", SaveSubDirectory = @"Ubisoft Game Launcher\savegames\dd887672-be36-4a2c-9fc7-80d93217b9f3" },
             new GameInfo { Name = "幻燐の姫将軍2", SavePath = LocalAppPath, SaveSubDirectory = @"Eushully\幻燐の姫将軍2DL版"},
         };
@@ -111,6 +111,29 @@ namespace ArinaCommandCenter
             if (dr == DialogResult.Cancel)
                 return;
             Process.Start("shutdown", "/s /t 0");
+        }
+
+        private void tsmRestart_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show($"重新啟動", "確定", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (dr == DialogResult.Cancel)
+                return;
+            Process.Start("shutdown", "/r /t 0");
+        }
+
+        private void tsmExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void tsmHibernate_Click(object sender, EventArgs e)
+        {
+            Application.SetSuspendState(PowerState.Hibernate, false, false);
+        }
+
+        private void tsmSuspend_Click(object sender, EventArgs e)
+        {
+            Application.SetSuspendState(PowerState.Suspend, false, false);
         }
     }
 }
