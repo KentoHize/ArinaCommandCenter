@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Aritiafel.Characters.Heroes;
 using System.IO;
 using System.Diagnostics;
+using IWshRuntimeLibrary;
+using System.Runtime.Remoting.Lifetime;
 
 namespace ArinaCommandCenter
 {
@@ -100,11 +102,6 @@ namespace ArinaCommandCenter
             LatestGameSaveMove(3);
         }
 
-        private void cbbGameList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void tsmShutdown_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show($"執行關機程序", "確定", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
@@ -134,6 +131,51 @@ namespace ArinaCommandCenter
         private void tsmSuspend_Click(object sender, EventArgs e)
         {
             Application.SetSuspendState(PowerState.Suspend, false, false);
+        }
+
+        private void tsmCreateDesktopShortcut_Click(object sender, EventArgs e)
+        {
+
+            //自身
+            string shortcutAddress = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Arina Command Center.lnk";
+            if (System.IO.File.Exists(shortcutAddress))
+                System.IO.File.Delete(shortcutAddress);
+
+            WshShell shell = new WshShell();
+            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
+            shortcut.Description = "有奈管理面板";
+            shortcut.IconLocation = string.Concat(Application.ExecutablePath, ", 0");
+            shortcut.WindowStyle = 1;
+            shortcut.TargetPath = Application.ExecutablePath;
+            shortcut.Save();
+            
+            //ArinaWebsiteManager
+            if (System.IO.File.Exists(@"C:\Programs\ArinaWebsiteManager\ArinaWebsiteManager\bin\Release\ArinaWebsiteManager.exe"))
+            {
+                shortcutAddress = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Arina Website Manager.lnk";
+                if (System.IO.File.Exists(shortcutAddress))
+                    System.IO.File.Delete(shortcutAddress);
+                shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
+                shortcut.Description = "有奈網站管理面板";
+                shortcut.WindowStyle = 1;
+                shortcut.IconLocation = @"C:\Programs\ArinaWebsiteManager\ArinaWebsiteManager\bin\Release\ArinaWebsiteManager.exe, 0";
+                shortcut.TargetPath = Application.ExecutablePath;
+                shortcut.Save();
+            }
+
+            //JsonEditorV2
+            if (System.IO.File.Exists(@"C:\Programs\JsonEditorV2\JsonEditorV2\bin\Release\JsonEditorV2.exe"))
+            {
+                shortcutAddress = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\Json Editor V2 .lnk";
+                if (System.IO.File.Exists(shortcutAddress))
+                    System.IO.File.Delete(shortcutAddress);
+                shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
+                shortcut.Description = "JSON資料庫";
+                shortcut.WindowStyle = 1;
+                shortcut.IconLocation = @"C:\Programs\JsonEditorV2\JsonEditorV2\bin\Release\JsonEditorV2.exe, 0";
+                shortcut.TargetPath = Application.ExecutablePath;
+                shortcut.Save();
+            }
         }
     }
 }

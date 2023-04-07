@@ -43,12 +43,14 @@ namespace ArinaCommandCenter
             this.tsmHibernate = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsmExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmReset = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmCreateDesktopShortcut = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGameSave
             // 
-            this.btnGameSave.Location = new System.Drawing.Point(114, 78);
+            this.btnGameSave.Location = new System.Drawing.Point(112, 99);
             this.btnGameSave.Name = "btnGameSave";
             this.btnGameSave.Size = new System.Drawing.Size(125, 39);
             this.btnGameSave.TabIndex = 0;
@@ -59,15 +61,14 @@ namespace ArinaCommandCenter
             // cbbGameList
             // 
             this.cbbGameList.FormattingEnabled = true;
-            this.cbbGameList.Location = new System.Drawing.Point(76, 30);
+            this.cbbGameList.Location = new System.Drawing.Point(76, 60);
             this.cbbGameList.Name = "cbbGameList";
             this.cbbGameList.Size = new System.Drawing.Size(394, 23);
             this.cbbGameList.TabIndex = 1;
-            this.cbbGameList.SelectedIndexChanged += new System.EventHandler(this.cbbGameList_SelectedIndexChanged);
             // 
             // btnGameSaveMove
             // 
-            this.btnGameSaveMove.Location = new System.Drawing.Point(308, 78);
+            this.btnGameSaveMove.Location = new System.Drawing.Point(309, 99);
             this.btnGameSaveMove.Name = "btnGameSaveMove";
             this.btnGameSaveMove.Size = new System.Drawing.Size(125, 39);
             this.btnGameSaveMove.TabIndex = 2;
@@ -99,10 +100,11 @@ namespace ArinaCommandCenter
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmSystem});
+            this.tsmSystem,
+            this.tsmReset});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(547, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(547, 28);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -116,7 +118,7 @@ namespace ArinaCommandCenter
             this.toolStripMenuItem1,
             this.tsmExit});
             this.tsmSystem.Name = "tsmSystem";
-            this.tsmSystem.Size = new System.Drawing.Size(72, 23);
+            this.tsmSystem.Size = new System.Drawing.Size(72, 24);
             this.tsmSystem.Text = "系統&(S)";
             // 
             // tsmShutdown
@@ -164,6 +166,21 @@ namespace ArinaCommandCenter
             this.tsmExit.Text = "結束";
             this.tsmExit.Click += new System.EventHandler(this.tsmExit_Click);
             // 
+            // tsmReset
+            // 
+            this.tsmReset.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmCreateDesktopShortcut});
+            this.tsmReset.Name = "tsmReset";
+            this.tsmReset.Size = new System.Drawing.Size(83, 24);
+            this.tsmReset.Text = "重新設定";
+            // 
+            // tsmCreateDesktopShortcut
+            // 
+            this.tsmCreateDesktopShortcut.Name = "tsmCreateDesktopShortcut";
+            this.tsmCreateDesktopShortcut.Size = new System.Drawing.Size(224, 26);
+            this.tsmCreateDesktopShortcut.Text = "產生桌面捷徑";
+            this.tsmCreateDesktopShortcut.Click += new System.EventHandler(this.tsmCreateDesktopShortcut_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -205,6 +222,8 @@ namespace ArinaCommandCenter
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem tsmExit;
         private System.Windows.Forms.ToolStripMenuItem tsmHibernate;
+        private System.Windows.Forms.ToolStripMenuItem tsmReset;
+        private System.Windows.Forms.ToolStripMenuItem tsmCreateDesktopShortcut;
     }
 }
 
