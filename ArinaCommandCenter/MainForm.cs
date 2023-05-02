@@ -12,6 +12,7 @@ using System.IO;
 using System.Diagnostics;
 using IWshRuntimeLibrary;
 using System.Runtime.Remoting.Lifetime;
+using Aritiafel.Locations;
 
 namespace ArinaCommandCenter
 {
@@ -19,16 +20,16 @@ namespace ArinaCommandCenter
     {
         private static string LocalAppPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         private static string MoveToFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        
         private List<GameInfo> GameList = new List<GameInfo>
         {
             new GameInfo { Name = "Rance 10", SavePath = MoveToFolder, SaveSubDirectory = @"AliceSoft\ランス１０" },
             new GameInfo { Name = "Pathfinder Kingmaker", SavePath = LocalAppPath + "Low", SaveSubDirectory = @"Owlcat Games\Pathfinder Kingmaker\Saved Games" },
+            new GameInfo { Name = "Pathfinder Wrath of the Righteous", SavePath = LocalAppPath + "Low", SaveSubDirectory = @"Owlcat Games\Pathfinder Wrath Of The Righteous\Saved Games" },
             new GameInfo { Name = "超昂神騎", SavePath = MoveToFolder, SaveSubDirectory = @"AliceSoft\超昂天使エスカレイヤー・リブート" },
             new GameInfo { Name = "Might & Magic Heroes VII", SavePath = @"C:\Program Files (x86)\Ubisoft", SaveSubDirectory = @"Ubisoft Game Launcher\savegames\dd887672-be36-4a2c-9fc7-80d93217b9f3" },
             new GameInfo { Name = "幻燐の姫将軍2", SavePath = LocalAppPath, SaveSubDirectory = @"Eushully\幻燐の姫将軍2DL版"},
         };
-
-        //private List<GameInfo> GameList2 = new List<GameInfo>((IEnumerable<GameInfo>) GameList);
 
         public MainForm()
         {
@@ -37,11 +38,18 @@ namespace ArinaCommandCenter
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            SettingShop.LoadIniFile(typeof(Setting));
             cbbGameList.DataSource = GameList;
             cbbGameList.DisplayMember = "Name";
-            cbbGameList.SelectedIndex = 4;
-            //cbbGameList2.DataSource = GameList2;
-            //cbbGameList2.DisplayMember = "Name";
+            if (!string.IsNullOrEmpty(Setting.LastestPlayedGame))
+                cbbGameList.SelectedIndex = GameList.FindIndex(m => m.Name == Setting.LastestPlayedGame);
+            else
+                cbbGameList.SelectedIndex = 0;
+            cbbBackupDrive.Items.Add("D");
+            cbbBackupDrive.Items.Add("E");
+            cbbBackupDrive.Items.Add("F");
+            cbbBackupDrive.Items.Add("G");
+            cbbBackupDrive.SelectedIndex = 0;
         }
 
         private void btnGameSave_Click(object sender, EventArgs e)
@@ -52,18 +60,22 @@ namespace ArinaCommandCenter
             if (cbbGameList.SelectedIndex != -1)
             {
                 Sonia.BackupGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath,
-                    ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory);
+                    ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory, cbbBackupDrive.SelectedItem.ToString());
                 MessageBox.Show("存檔完成");
             }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Directory.Exists(@"E:\"))
+            if (Directory.Exists($@"{cbbBackupDrive.SelectedItem}:\"))
             {
                 MessageBox.Show("記得取出隨身碟", "記憶裝置未取出", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 e.Cancel = true;
             }
+
+            //紀錄最近玩的遊戲
+            Setting.LastestPlayedGame = ((GameInfo)cbbGameList.SelectedItem).Name;
+            SettingShop.SaveIniFile(typeof(Setting));
         }
 
         private void btnGameSaveMove_Click(object sender, EventArgs e)
@@ -125,11 +137,17 @@ namespace ArinaCommandCenter
 
         private void tsmHibernate_Click(object sender, EventArgs e)
         {
+            DialogResult dr = MessageBox.Show($"休眠", "確定", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (dr == DialogResult.Cancel)
+                return;
             Application.SetSuspendState(PowerState.Hibernate, false, false);
         }
 
         private void tsmSuspend_Click(object sender, EventArgs e)
         {
+            DialogResult dr = MessageBox.Show($"睡眠", "確定", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (dr == DialogResult.Cancel)
+                return;
             Application.SetSuspendState(PowerState.Suspend, false, false);
         }
 
