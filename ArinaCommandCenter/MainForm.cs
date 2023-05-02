@@ -44,12 +44,15 @@ namespace ArinaCommandCenter
             if (!string.IsNullOrEmpty(Setting.LastestPlayedGame))
                 cbbGameList.SelectedIndex = GameList.FindIndex(m => m.Name == Setting.LastestPlayedGame);
             else
-                cbbGameList.SelectedIndex = 0;
+                cbbGameList.SelectedIndex = 0;            
             cbbBackupDrive.Items.Add("D");
             cbbBackupDrive.Items.Add("E");
             cbbBackupDrive.Items.Add("F");
             cbbBackupDrive.Items.Add("G");
-            cbbBackupDrive.SelectedIndex = 0;
+            if (!string.IsNullOrEmpty(Setting.BackupDrive))
+                cbbBackupDrive.SelectedIndex = cbbBackupDrive.Items.IndexOf(Setting.BackupDrive);
+            else
+                cbbBackupDrive.SelectedIndex = 0;
         }
 
         private void btnGameSave_Click(object sender, EventArgs e)
@@ -75,6 +78,7 @@ namespace ArinaCommandCenter
 
             //紀錄最近玩的遊戲
             Setting.LastestPlayedGame = ((GameInfo)cbbGameList.SelectedItem).Name;
+            Setting.BackupDrive = cbbBackupDrive.SelectedItem.ToString();
             SettingShop.SaveIniFile(typeof(Setting));
         }
 

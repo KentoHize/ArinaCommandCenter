@@ -9,5 +9,6 @@ namespace ArinaCommandCenter
     public static class Setting
     {
         public static string LastestPlayedGame { get; set; } = null;
+        public static string BackupDrive { get; set; } = "D";
     }
 }
