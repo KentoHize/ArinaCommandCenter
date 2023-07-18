@@ -20,7 +20,9 @@ namespace ArinaCommandCenter
     {
         private static string LocalAppPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         private static string MoveToFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        
+        private static string SteamUserData = "C:\\Program Files (x86)\\Steam\\userdata\\79365011";
+
+
         private List<GameInfo> GameList = new List<GameInfo>
         {
             new GameInfo { Name = "Rance 10", SavePath = MoveToFolder, SaveSubDirectory = @"AliceSoft\ランス１０" },
@@ -30,7 +32,7 @@ namespace ArinaCommandCenter
             new GameInfo { Name = "超昂神騎", SavePath = MoveToFolder, SaveSubDirectory = @"AliceSoft\超昂神騎エクシール" },
             new GameInfo { Name = "Might & Magic Heroes VII", SavePath = @"C:\Program Files (x86)\Ubisoft", SaveSubDirectory = @"Ubisoft Game Launcher\savegames\dd887672-be36-4a2c-9fc7-80d93217b9f3" },
             new GameInfo { Name = "幻燐の姫将軍2", SavePath = LocalAppPath, SaveSubDirectory = @"Eushully\幻燐の姫将軍2DL版"},
-            new GameInfo { Name = "三國志14", SavePath = MoveToFolder, SaveSubDirectory = @"KoeiTecmo\SAN14"},
+            new GameInfo { Name = "三國志14", SavePath = MoveToFolder, SaveSubDirectory = @"KoeiTecmo\SAN14", SavePath2 = SteamUserData, SaveSubDirectory2 = @"872410\"},
         };
 
         public MainForm()
@@ -66,6 +68,12 @@ namespace ArinaCommandCenter
             {
                 Sonia.BackupGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath,
                     ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory, cbbBackupDrive.SelectedItem.ToString());
+
+                if (!string.IsNullOrEmpty(((GameInfo)cbbGameList.SelectedItem).SavePath2))
+                {
+                    Sonia.BackupGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath2,
+                   ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory2, cbbBackupDrive.SelectedItem.ToString());
+                }
                 MessageBox.Show("存檔完成");
             }
         }
@@ -94,6 +102,13 @@ namespace ArinaCommandCenter
                 long fileCount = Sonia.CopyGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath,
                     ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory,
                     MoveToFolder);
+
+                if(!string.IsNullOrEmpty(((GameInfo)cbbGameList.SelectedItem).SavePath2))
+                {
+                    fileCount += Sonia.CopyGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath2,
+                    ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory2,
+                    MoveToFolder);
+                }
                 MessageBox.Show($"移動完成，已經移動{fileCount}個檔案");
             }
             
@@ -106,6 +121,12 @@ namespace ArinaCommandCenter
                 long fileCount = Sonia.CopyLatestGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath,
                     ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory,
                     MoveToFolder, inMinutes);
+                if (!string.IsNullOrEmpty(((GameInfo)cbbGameList.SelectedItem).SavePath2))
+                {
+                    fileCount += Sonia.CopyLatestGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath2,
+                    ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory2,
+                    MoveToFolder, inMinutes);
+                }
                 MessageBox.Show($"移動完成，已經移動{fileCount}個檔案");
             }
         }
