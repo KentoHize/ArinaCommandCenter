@@ -20,7 +20,7 @@ namespace ArinaCommandCenter
     {
         private static string LocalAppPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         private static string MoveToFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        private static string SteamUserData = "C:\\Program Files (x86)\\Steam\\userdata\\79365011";
+        private static string ProgramFiles86 = @"C:\Program Files (x86)\";
 
 
         private List<GameInfo> GameList = new List<GameInfo>
@@ -32,7 +32,7 @@ namespace ArinaCommandCenter
             new GameInfo { Name = "超昂神騎", SavePath = MoveToFolder, SaveSubDirectory = @"AliceSoft\超昂神騎エクシール" },
             new GameInfo { Name = "Might & Magic Heroes VII", SavePath = @"C:\Program Files (x86)\Ubisoft", SaveSubDirectory = @"Ubisoft Game Launcher\savegames\dd887672-be36-4a2c-9fc7-80d93217b9f3" },
             new GameInfo { Name = "幻燐の姫将軍2", SavePath = LocalAppPath, SaveSubDirectory = @"Eushully\幻燐の姫将軍2DL版"},
-            new GameInfo { Name = "三國志14", SavePath = MoveToFolder, SaveSubDirectory = @"KoeiTecmo\SAN14", SavePath2 = SteamUserData, SaveSubDirectory2 = @"872410\"},
+            new GameInfo { Name = "三國志14", SavePath = MoveToFolder, SaveSubDirectory = @"KoeiTecmo\SAN14", SavePath2 = ProgramFiles86, SaveSubDirectory2 = @"Steam\userdata\79365011\872410\"},
         };
 
         public MainForm()
