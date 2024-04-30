@@ -34,7 +34,8 @@ namespace ArinaCommandCenter
             new GameInfo { Name = "Might & Magic Heroes VII", SavePath = @"C:\Program Files (x86)\Ubisoft", SaveSubDirectory = @"Ubisoft Game Launcher\savegames\dd887672-be36-4a2c-9fc7-80d93217b9f3" },
             new GameInfo { Name = "幻燐の姫将軍2", SavePath = LocalAppPath, SaveSubDirectory = @"Eushully\幻燐の姫将軍2DL版"},
             new GameInfo { Name = "三國志14", SavePath = MoveToFolder, SaveSubDirectory = @"KoeiTecmo\SAN14", SavePath2 = ProgramFiles86, SaveSubDirectory2 = @"Steam\userdata\79365011\872410\"},
-            new GameInfo { Name = "聖女戰旗", SavePath = LocalAppPath + "Low", SaveSubDirectory = @"AzureFlameStudio" },            
+            new GameInfo { Name = "聖女戰旗", SavePath = LocalAppPath + "Low", SaveSubDirectory = @"AzureFlameStudio" },
+            new GameInfo { Name = "Guild Master", SavePath = MoveToFolder, SaveSubDirectory = @"Astronauts_Sirius\Guildmaster"}
             //new GameInfo { Name = "御魂", SavePath = @"C:\Game\御魂"}
         };
 
