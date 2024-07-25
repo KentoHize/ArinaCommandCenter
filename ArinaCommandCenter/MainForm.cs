@@ -13,6 +13,7 @@ using System.Diagnostics;
 using IWshRuntimeLibrary;
 using System.Runtime.Remoting.Lifetime;
 using Aritiafel.Locations;
+using System.Runtime.CompilerServices;
 
 namespace ArinaCommandCenter
 {
@@ -20,7 +21,7 @@ namespace ArinaCommandCenter
     {
         private static string LocalAppPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
         private static string MoveToFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        
+        private static string UnzippedFolder = @"C:\Unziped\";
         private static string ProgramFiles86 = @"C:\Program Files (x86)\";
 
 
@@ -35,7 +36,8 @@ namespace ArinaCommandCenter
             new GameInfo { Name = "幻燐の姫将軍2", SavePath = LocalAppPath, SaveSubDirectory = @"Eushully\幻燐の姫将軍2DL版"},
             new GameInfo { Name = "三國志14", SavePath = MoveToFolder, SaveSubDirectory = @"KoeiTecmo\SAN14", SavePath2 = ProgramFiles86, SaveSubDirectory2 = @"Steam\userdata\79365011\872410\"},
             new GameInfo { Name = "聖女戰旗", SavePath = LocalAppPath + "Low", SaveSubDirectory = @"AzureFlameStudio" },
-            new GameInfo { Name = "Guild Master", SavePath = MoveToFolder, SaveSubDirectory = @"Astronauts_Sirius\Guildmaster"}
+            new GameInfo { Name = "Guild Master", SavePath = MoveToFolder, SaveSubDirectory = @"Astronauts_Sirius\Guildmaster"},
+            new GameInfo { Name = "Elf All Star 脱衣雀3", SavePath = UnzippedFolder, SaveSubDirectory = @"elf_allstar3\savedatsui3" }
             //new GameInfo { Name = "御魂", SavePath = @"C:\Game\御魂"}
         };
 
