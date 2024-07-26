@@ -14,16 +14,19 @@ using IWshRuntimeLibrary;
 using System.Runtime.Remoting.Lifetime;
 using Aritiafel.Locations;
 using System.Runtime.CompilerServices;
+using System.Net.NetworkInformation;
 
 namespace ArinaCommandCenter
 {
     public partial class MainForm : Form
     {
         private static string LocalAppPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        private static string LocalVirtualStoreProgramFiles = string.Concat(LocalAppPath, @"\VirtualStore\Program Files\");
+        private static string LocalVirtualStoreProgramFiles86 = string.Concat(LocalAppPath, @"\VirtualStore\Program Files (x86)\");
         private static string MoveToFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         private static string UnzippedFolder = @"C:\Unziped\";
         private static string ProgramFiles86 = @"C:\Program Files (x86)\";
-
+        private static string ProgramFiles = @"C:\Program Files\";
 
         private List<GameInfo> GameList = new List<GameInfo>
         {
@@ -37,7 +40,9 @@ namespace ArinaCommandCenter
             new GameInfo { Name = "三國志14", SavePath = MoveToFolder, SaveSubDirectory = @"KoeiTecmo\SAN14", SavePath2 = ProgramFiles86, SaveSubDirectory2 = @"Steam\userdata\79365011\872410\"},
             new GameInfo { Name = "聖女戰旗", SavePath = LocalAppPath + "Low", SaveSubDirectory = @"AzureFlameStudio" },
             new GameInfo { Name = "Guild Master", SavePath = MoveToFolder, SaveSubDirectory = @"Astronauts_Sirius\Guildmaster"},
-            new GameInfo { Name = "Elf All Star 脱衣雀3", SavePath = UnzippedFolder, SaveSubDirectory = @"elf_allstar3\savedatsui3" }
+            new GameInfo { Name = "Elf All Star 脱衣雀3", SavePath = UnzippedFolder, SaveSubDirectory = @"elf_allstar3\savedatsui3" },
+            //new GameInfo { Name = "王賊", SavePath = ProgramFiles, SaveSubDirectory = @"King\king.sav" }
+            new GameInfo { Name = "王賊", SavePath = LocalVirtualStoreProgramFiles, SaveSubDirectory = @"King\king.sav" }
             //new GameInfo { Name = "御魂", SavePath = @"C:\Game\御魂"}
         };
 
