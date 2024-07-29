@@ -47,12 +47,13 @@ namespace ArinaCommandCenter
             this.tsmCreateDesktopShortcut = new System.Windows.Forms.ToolStripMenuItem();
             this.cbbBackupDrive = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnJEGameList = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGameSave
             // 
-            this.btnGameSave.Location = new System.Drawing.Point(93, 149);
+            this.btnGameSave.Location = new System.Drawing.Point(92, 167);
             this.btnGameSave.Name = "btnGameSave";
             this.btnGameSave.Size = new System.Drawing.Size(125, 39);
             this.btnGameSave.TabIndex = 0;
@@ -63,14 +64,14 @@ namespace ArinaCommandCenter
             // cbbGameList
             // 
             this.cbbGameList.FormattingEnabled = true;
-            this.cbbGameList.Location = new System.Drawing.Point(76, 60);
+            this.cbbGameList.Location = new System.Drawing.Point(43, 65);
             this.cbbGameList.Name = "cbbGameList";
-            this.cbbGameList.Size = new System.Drawing.Size(394, 23);
+            this.cbbGameList.Size = new System.Drawing.Size(358, 23);
             this.cbbGameList.TabIndex = 1;
             // 
             // btnGameSaveMove
             // 
-            this.btnGameSaveMove.Location = new System.Drawing.Point(332, 149);
+            this.btnGameSaveMove.Location = new System.Drawing.Point(331, 167);
             this.btnGameSaveMove.Name = "btnGameSaveMove";
             this.btnGameSaveMove.Size = new System.Drawing.Size(125, 39);
             this.btnGameSaveMove.TabIndex = 2;
@@ -80,7 +81,7 @@ namespace ArinaCommandCenter
             // 
             // btnLatestGameSaveMove
             // 
-            this.btnLatestGameSaveMove.Location = new System.Drawing.Point(44, 209);
+            this.btnLatestGameSaveMove.Location = new System.Drawing.Point(43, 227);
             this.btnLatestGameSaveMove.Name = "btnLatestGameSaveMove";
             this.btnLatestGameSaveMove.Size = new System.Drawing.Size(208, 40);
             this.btnLatestGameSaveMove.TabIndex = 4;
@@ -90,7 +91,7 @@ namespace ArinaCommandCenter
             // 
             // btnLatestGameSaveMove2
             // 
-            this.btnLatestGameSaveMove2.Location = new System.Drawing.Point(299, 209);
+            this.btnLatestGameSaveMove2.Location = new System.Drawing.Point(298, 227);
             this.btnLatestGameSaveMove2.Name = "btnLatestGameSaveMove2";
             this.btnLatestGameSaveMove2.Size = new System.Drawing.Size(209, 40);
             this.btnLatestGameSaveMove2.TabIndex = 5;
@@ -127,7 +128,7 @@ namespace ArinaCommandCenter
             // 
             this.tsmSuspend.Name = "tsmSuspend";
             this.tsmSuspend.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
-            this.tsmSuspend.Size = new System.Drawing.Size(207, 26);
+            this.tsmSuspend.Size = new System.Drawing.Size(224, 26);
             this.tsmSuspend.Text = "睡眠";
             this.tsmSuspend.Click += new System.EventHandler(this.tsmSuspend_Click);
             // 
@@ -135,7 +136,7 @@ namespace ArinaCommandCenter
             // 
             this.tsmHibernate.Name = "tsmHibernate";
             this.tsmHibernate.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.tsmHibernate.Size = new System.Drawing.Size(207, 26);
+            this.tsmHibernate.Size = new System.Drawing.Size(224, 26);
             this.tsmHibernate.Text = "休眠";
             this.tsmHibernate.Click += new System.EventHandler(this.tsmHibernate_Click);
             // 
@@ -143,7 +144,7 @@ namespace ArinaCommandCenter
             // 
             this.tsmRestart.Name = "tsmRestart";
             this.tsmRestart.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.tsmRestart.Size = new System.Drawing.Size(207, 26);
+            this.tsmRestart.Size = new System.Drawing.Size(224, 26);
             this.tsmRestart.Text = "重新啟動";
             this.tsmRestart.Click += new System.EventHandler(this.tsmRestart_Click);
             // 
@@ -151,20 +152,20 @@ namespace ArinaCommandCenter
             // 
             this.tsmShutdown.Name = "tsmShutdown";
             this.tsmShutdown.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tsmShutdown.Size = new System.Drawing.Size(207, 26);
+            this.tsmShutdown.Size = new System.Drawing.Size(224, 26);
             this.tsmShutdown.Text = "關機";
             this.tsmShutdown.Click += new System.EventHandler(this.tsmShutdown_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(221, 6);
             // 
             // tsmExit
             // 
             this.tsmExit.Name = "tsmExit";
             this.tsmExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.tsmExit.Size = new System.Drawing.Size(207, 26);
+            this.tsmExit.Size = new System.Drawing.Size(224, 26);
             this.tsmExit.Text = "結束";
             this.tsmExit.Click += new System.EventHandler(this.tsmExit_Click);
             // 
@@ -186,7 +187,7 @@ namespace ArinaCommandCenter
             // cbbBackupDrive
             // 
             this.cbbBackupDrive.FormattingEnabled = true;
-            this.cbbBackupDrive.Location = new System.Drawing.Point(353, 99);
+            this.cbbBackupDrive.Location = new System.Drawing.Point(352, 117);
             this.cbbBackupDrive.Name = "cbbBackupDrive";
             this.cbbBackupDrive.Size = new System.Drawing.Size(117, 23);
             this.cbbBackupDrive.TabIndex = 7;
@@ -194,17 +195,28 @@ namespace ArinaCommandCenter
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(192, 102);
+            this.label1.Location = new System.Drawing.Point(191, 120);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 15);
             this.label1.TabIndex = 8;
             this.label1.Text = "備份磁碟機位置";
+            // 
+            // btnJEGameList
+            // 
+            this.btnJEGameList.Location = new System.Drawing.Point(415, 52);
+            this.btnJEGameList.Name = "btnJEGameList";
+            this.btnJEGameList.Size = new System.Drawing.Size(92, 47);
+            this.btnJEGameList.TabIndex = 9;
+            this.btnJEGameList.Text = "編輯(Json Editor)";
+            this.btnJEGameList.UseVisualStyleBackColor = true;
+            this.btnJEGameList.Click += new System.EventHandler(this.btnJEGameList_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(547, 301);
+            this.Controls.Add(this.btnJEGameList);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbbBackupDrive);
             this.Controls.Add(this.btnLatestGameSaveMove2);
@@ -247,6 +259,7 @@ namespace ArinaCommandCenter
         private System.Windows.Forms.ToolStripMenuItem tsmCreateDesktopShortcut;
         private System.Windows.Forms.ComboBox cbbBackupDrive;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnJEGameList;
     }
 }
 

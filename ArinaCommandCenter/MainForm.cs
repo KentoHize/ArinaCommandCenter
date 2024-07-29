@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Aritiafel.Locations;
 using System.Text.Json;
 using IWshRuntimeLibrary;
+using System.Runtime.Remoting.Lifetime;
 
 namespace ArinaCommandCenter
 {
@@ -250,6 +251,12 @@ namespace ArinaCommandCenter
                 shortcut.TargetPath = excutePath;
                 shortcut.Save();
             }
+        }
+
+        private void btnJEGameList_Click(object sender, EventArgs e)
+        {   
+            Process.Start(@"C:\Programs\JsonEditorV2\JsonEditorV2\bin\Release\JsonEditorV2.exe",
+                Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Data"));
         }
     }
 }
