@@ -56,8 +56,12 @@ namespace ArinaCommandCenter
             folderorfile = Path.Combine(folderorfile, "GameList.json");            
             if (!System.IO.File.Exists(folderorfile))
             {
+                GameList.Add(
+                    new GameInfo { Name = "三國志14", SavePath = MoveToFolder, SaveSubDirectory = @"KoeiTecmo\SAN14", SavePath2 = ProgramFiles86, SaveSubDirectory2 = @"Steam\userdata\79365011\872410\" }
+                );
+
                 StreamWriter sw = new StreamWriter(folderorfile);
-                sw.Write("[]");
+                sw.Write(JsonSerializer.Serialize(GameList));
                 sw.Close();
             }
 
