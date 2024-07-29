@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Aritiafel.Characters.Heroes;
 using System.IO;
 using System.Diagnostics;
-using IWshRuntimeLibrary;
-using System.Runtime.Remoting.Lifetime;
 using Aritiafel.Locations;
-using System.Runtime.CompilerServices;
-using System.Net.NetworkInformation;
+using System.Text.Json;
+using IWshRuntimeLibrary;
 
 namespace ArinaCommandCenter
 {
@@ -28,23 +21,25 @@ namespace ArinaCommandCenter
         private static string ProgramFiles86 = @"C:\Program Files (x86)\";
         private static string ProgramFiles = @"C:\Program Files\";
 
-        private List<GameInfo> GameList = new List<GameInfo>
-        {
-            new GameInfo { Name = "Rance 10", SavePath = MoveToFolder, SaveSubDirectory = @"AliceSoft\ランス１０" },
-            new GameInfo { Name = "Pathfinder Kingmaker", SavePath = LocalAppPath + "Low", SaveSubDirectory = @"Owlcat Games\Pathfinder Kingmaker\Saved Games" },
-            new GameInfo { Name = "Pathfinder Wrath of the Righteous", SavePath = LocalAppPath + "Low", SaveSubDirectory = @"Owlcat Games\Pathfinder Wrath Of The Righteous\Saved Games" },
-            new GameInfo { Name = "超昂天使エスカレイヤー・リブート", SavePath = MoveToFolder, SaveSubDirectory = @"AliceSoft\超昂天使エスカレイヤー・リブート" },
-            new GameInfo { Name = "超昂神騎エクシール", SavePath = MoveToFolder, SaveSubDirectory = @"AliceSoft\超昂神騎エクシール" },
-            new GameInfo { Name = "Might & Magic Heroes VII", SavePath = @"C:\Program Files (x86)\Ubisoft", SaveSubDirectory = @"Ubisoft Game Launcher\savegames\dd887672-be36-4a2c-9fc7-80d93217b9f3" },
-            new GameInfo { Name = "幻燐の姫将軍2", SavePath = LocalAppPath, SaveSubDirectory = @"Eushully\幻燐の姫将軍2DL版"},
-            new GameInfo { Name = "三國志14", SavePath = MoveToFolder, SaveSubDirectory = @"KoeiTecmo\SAN14", SavePath2 = ProgramFiles86, SaveSubDirectory2 = @"Steam\userdata\79365011\872410\"},
-            new GameInfo { Name = "聖女戰旗", SavePath = LocalAppPath + "Low", SaveSubDirectory = @"AzureFlameStudio" },
-            new GameInfo { Name = "Guild Master", SavePath = MoveToFolder, SaveSubDirectory = @"Astronauts_Sirius\Guildmaster"},
-            new GameInfo { Name = "Elf All Star 脱衣雀3", SavePath = UnzippedFolder, SaveSubDirectory = @"elf_allstar3\savedatsui3" },
-            //new GameInfo { Name = "王賊", SavePath = ProgramFiles, SaveSubDirectory = @"King\king.sav" }
-            new GameInfo { Name = "王賊", SavePath = LocalVirtualStoreProgramFiles, SaveSubDirectory = @"King\king.sav" }
-            //new GameInfo { Name = "御魂", SavePath = @"C:\Game\御魂"}
-        };
+        private List<GameInfo> GameList = new List<GameInfo>();
+
+        //private List<GameInfo> GameList = new List<GameInfo>
+        //{
+        //    new GameInfo { Name = "Rance 10", SavePath = MoveToFolder, SaveSubDirectory = @"AliceSoft\ランス１０" },
+        //    new GameInfo { Name = "Pathfinder Kingmaker", SavePath = LocalAppPath + "Low", SaveSubDirectory = @"Owlcat Games\Pathfinder Kingmaker\Saved Games" },
+        //    new GameInfo { Name = "Pathfinder Wrath of the Righteous", SavePath = LocalAppPath + "Low", SaveSubDirectory = @"Owlcat Games\Pathfinder Wrath Of The Righteous\Saved Games" },
+        //    new GameInfo { Name = "超昂天使エスカレイヤー・リブート", SavePath = MoveToFolder, SaveSubDirectory = @"AliceSoft\超昂天使エスカレイヤー・リブート" },
+        //    new GameInfo { Name = "超昂神騎エクシール", SavePath = MoveToFolder, SaveSubDirectory = @"AliceSoft\超昂神騎エクシール" },
+        //    new GameInfo { Name = "Might & Magic Heroes VII", SavePath = @"C:\Program Files (x86)\Ubisoft", SaveSubDirectory = @"Ubisoft Game Launcher\savegames\dd887672-be36-4a2c-9fc7-80d93217b9f3" },
+        //    new GameInfo { Name = "幻燐の姫将軍2", SavePath = LocalAppPath, SaveSubDirectory = @"Eushully\幻燐の姫将軍2DL版"},
+        //    new GameInfo { Name = "三國志14", SavePath = MoveToFolder, SaveSubDirectory = @"KoeiTecmo\SAN14", SavePath2 = ProgramFiles86, SaveSubDirectory2 = @"Steam\userdata\79365011\872410\"},
+        //    new GameInfo { Name = "聖女戰旗", SavePath = LocalAppPath + "Low", SaveSubDirectory = @"AzureFlameStudio" },
+        //    new GameInfo { Name = "Guild Master", SavePath = MoveToFolder, SaveSubDirectory = @"Astronauts_Sirius\Guildmaster"},
+        //    new GameInfo { Name = "Elf All Star 脱衣雀3", SavePath = UnzippedFolder, SaveSubDirectory = @"elf_allstar3\savedatsui3" },
+        //    //new GameInfo { Name = "王賊", SavePath = ProgramFiles, SaveSubDirectory = @"King\king.sav" }
+        //    new GameInfo { Name = "王賊", SavePath = LocalVirtualStoreProgramFiles, SaveSubDirectory = @"King\king.sav" }
+        //    //new GameInfo { Name = "御魂", SavePath = @"C:\Game\御魂"}
+        //};
 
         public MainForm()
         {
@@ -53,6 +48,23 @@ namespace ArinaCommandCenter
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            //確認所需資料夾與檔案存在
+            string folderorfile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Data");
+            if (!Directory.Exists(folderorfile))
+                Directory.CreateDirectory(folderorfile);
+            folderorfile = Path.Combine(folderorfile, "GameList.json");            
+            if (!System.IO.File.Exists(folderorfile))
+            {
+                StreamWriter sw = new StreamWriter(folderorfile);
+                sw.Write("[]");
+                sw.Close();
+            }
+
+            //讀取GameList
+            StreamReader sr = new StreamReader(folderorfile);
+            GameList = JsonSerializer.Deserialize<List<GameInfo>>(sr.ReadToEnd());
+            sr.Close();
+
             SettingShop.LoadIniFile(typeof(Setting));
             cbbGameList.DataSource = GameList;
             cbbGameList.DisplayMember = "Name";
@@ -97,9 +109,13 @@ namespace ArinaCommandCenter
                 e.Cancel = true;
             }
 
-            //紀錄最近玩的遊戲
-            Setting.LastestPlayedGame = ((GameInfo)cbbGameList.SelectedItem).Name;
-            Setting.BackupDrive = cbbBackupDrive.SelectedItem.ToString();
+            if(cbbGameList.SelectedIndex != -1)
+            {
+                Setting.LastestPlayedGame = ((GameInfo)cbbGameList.SelectedItem).Name;
+                Setting.BackupDrive = cbbBackupDrive.SelectedItem.ToString();
+            }
+
+            //紀錄最近玩的遊戲            
             SettingShop.SaveIniFile(typeof(Setting));
         }
 
