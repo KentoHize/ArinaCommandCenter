@@ -48,6 +48,7 @@ namespace ArinaCommandCenter
             this.cbbBackupDrive = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnJEGameList = new System.Windows.Forms.Button();
+            this.btnRequesterOpen = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,7 +108,7 @@ namespace ArinaCommandCenter
             this.tsmReset});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(547, 27);
+            this.menuStrip1.Size = new System.Drawing.Size(556, 27);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -128,7 +129,7 @@ namespace ArinaCommandCenter
             // 
             this.tsmSuspend.Name = "tsmSuspend";
             this.tsmSuspend.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.U)));
-            this.tsmSuspend.Size = new System.Drawing.Size(224, 26);
+            this.tsmSuspend.Size = new System.Drawing.Size(207, 26);
             this.tsmSuspend.Text = "睡眠";
             this.tsmSuspend.Click += new System.EventHandler(this.tsmSuspend_Click);
             // 
@@ -136,7 +137,7 @@ namespace ArinaCommandCenter
             // 
             this.tsmHibernate.Name = "tsmHibernate";
             this.tsmHibernate.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.tsmHibernate.Size = new System.Drawing.Size(224, 26);
+            this.tsmHibernate.Size = new System.Drawing.Size(207, 26);
             this.tsmHibernate.Text = "休眠";
             this.tsmHibernate.Click += new System.EventHandler(this.tsmHibernate_Click);
             // 
@@ -144,7 +145,7 @@ namespace ArinaCommandCenter
             // 
             this.tsmRestart.Name = "tsmRestart";
             this.tsmRestart.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.tsmRestart.Size = new System.Drawing.Size(224, 26);
+            this.tsmRestart.Size = new System.Drawing.Size(207, 26);
             this.tsmRestart.Text = "重新啟動";
             this.tsmRestart.Click += new System.EventHandler(this.tsmRestart_Click);
             // 
@@ -152,20 +153,20 @@ namespace ArinaCommandCenter
             // 
             this.tsmShutdown.Name = "tsmShutdown";
             this.tsmShutdown.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.tsmShutdown.Size = new System.Drawing.Size(224, 26);
+            this.tsmShutdown.Size = new System.Drawing.Size(207, 26);
             this.tsmShutdown.Text = "關機";
             this.tsmShutdown.Click += new System.EventHandler(this.tsmShutdown_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 6);
             // 
             // tsmExit
             // 
             this.tsmExit.Name = "tsmExit";
             this.tsmExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-            this.tsmExit.Size = new System.Drawing.Size(224, 26);
+            this.tsmExit.Size = new System.Drawing.Size(207, 26);
             this.tsmExit.Text = "結束";
             this.tsmExit.Click += new System.EventHandler(this.tsmExit_Click);
             // 
@@ -211,11 +212,22 @@ namespace ArinaCommandCenter
             this.btnJEGameList.UseVisualStyleBackColor = true;
             this.btnJEGameList.Click += new System.EventHandler(this.btnJEGameList_Click);
             // 
+            // btnRequesterOpen
+            // 
+            this.btnRequesterOpen.Location = new System.Drawing.Point(43, 284);
+            this.btnRequesterOpen.Name = "btnRequesterOpen";
+            this.btnRequesterOpen.Size = new System.Drawing.Size(117, 39);
+            this.btnRequesterOpen.TabIndex = 10;
+            this.btnRequesterOpen.Text = "WebRequest";
+            this.btnRequesterOpen.UseVisualStyleBackColor = true;
+            this.btnRequesterOpen.Click += new System.EventHandler(this.btnRequesterOpen_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 301);
+            this.ClientSize = new System.Drawing.Size(556, 346);
+            this.Controls.Add(this.btnRequesterOpen);
             this.Controls.Add(this.btnJEGameList);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbbBackupDrive);
@@ -260,6 +272,7 @@ namespace ArinaCommandCenter
         private System.Windows.Forms.ComboBox cbbBackupDrive;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnJEGameList;
+        private System.Windows.Forms.Button btnRequesterOpen;
     }
 }
 

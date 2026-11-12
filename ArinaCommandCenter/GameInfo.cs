@@ -13,9 +13,8 @@ namespace ArinaCommandCenter
         //public string LatestSaveFolder { get; set; }
         public string SavePath { get; set; }
         public string SaveSubDirectory { get; set; }
-
         public string SavePath2 { get; set; }
-
         public string SaveSubDirectory2 { get; set; }
+        public string FileExtension { get; set; }
     }
 }

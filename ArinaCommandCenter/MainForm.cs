@@ -133,13 +133,13 @@ namespace ArinaCommandCenter
             {
                 long fileCount = Sonia.CopyGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath,
                     ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory,
-                    MoveToFolder);
+                    MoveToFolder, ((GameInfo)cbbGameList.SelectedItem).FileExtension);
 
                 if(!string.IsNullOrEmpty(((GameInfo)cbbGameList.SelectedItem).SavePath2))
                 {
                     fileCount += Sonia.CopyGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath2,
                     ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory2,
-                    MoveToFolder);
+                    MoveToFolder, ((GameInfo)cbbGameList.SelectedItem).FileExtension);
                 }
                 MessageBox.Show($"移動完成，已經移動{fileCount}個檔案");
             }
@@ -152,12 +152,12 @@ namespace ArinaCommandCenter
             {
                 long fileCount = Sonia.CopyLatestGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath,
                     ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory,
-                    MoveToFolder, inMinutes);
+                    MoveToFolder, ((GameInfo)cbbGameList.SelectedItem).FileExtension, inMinutes);
                 if (!string.IsNullOrEmpty(((GameInfo)cbbGameList.SelectedItem).SavePath2))
                 {
                     fileCount += Sonia.CopyLatestGameSave(((GameInfo)cbbGameList.SelectedItem).SavePath2,
                     ((GameInfo)cbbGameList.SelectedItem).SaveSubDirectory2,
-                    MoveToFolder, inMinutes);
+                    MoveToFolder, ((GameInfo)cbbGameList.SelectedItem).FileExtension, inMinutes);
                 }
                 MessageBox.Show($"移動完成，已經移動{fileCount}個檔案");
             }
@@ -261,6 +261,12 @@ namespace ArinaCommandCenter
         {   
             Process.Start(@"C:\Programs\JsonEditorV2\JsonEditorV2\bin\Release\JsonEditorV2.exe",
                 Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "Data"));
+        }
+
+        private void btnRequesterOpen_Click(object sender, EventArgs e)
+        {
+            frmRequester fr = new frmRequester();
+            fr.Show();
         }
     }
 }
